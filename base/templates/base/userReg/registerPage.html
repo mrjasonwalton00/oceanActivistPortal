@@ -5,66 +5,86 @@
 {% block content %}
 
 <style>
-    body {
-        background-color: red !important;
-    }
+     body {
+    /* Background Picture */
+    background-image: url('/static/images/background-images/background1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 </style>
 
-<h1> Register Page </h1>
+<!-- Header -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center"> Pick a Buddy! </h1>
+    </div>
+  </div>
+</div>
+
 
 <div class="container">
     <div class="row">
         <div class="col p-5 d-flex justify-content-center">
 
-            <div id="carouselExampleCaptions" class="carousel slide" style="width: 400px;">
-                <div class="carousel-indicators">
+            <div id="carouselExampleCaptions" class="carousel slide" style="width: 400px;  border-radius: 30px; background-color: rgba(255, 255, 255, 0.229);">
+                <div class="carousel-indicators" style="margin-top: 100px;">
                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+
+
                 </div>
                 <div class="carousel-inner">
+
                   <div class="carousel-item active">
-
-                    <div class="d-flex justify-content-center p-5" style="background-color: blue;">
-                        <div class="p-5" style="background-color: yellow; margin-bottom: 100px;">
-                            <p> test </p>
-                        </div>
-                            
+                    <div class="d-flex justify-content-center mb-3" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/turtle.png' %}" class="p-5 mb-3" style="width: 350px; height: 350px;"> 
                     </div>
-
                     <div class="carousel-caption d-none d-md-block" >
                       <h5>First slide label</h5>
-                      <p>Some representative placeholder content for the first slide.</p>
+                      <button type="button" class="btn btn-warning btn-lg">Register</button>
                     </div>
                   </div>
 
-                  <div class="carousel-item active">
-
-                    <div class="d-flex justify-content-center p-5" style="background-color: blue;">
-                        <div class="p-5" style="background-color: rgb(255, 31, 203); margin-bottom: 100px;">
-                            <p> test </p>
-                        </div>
-                            
+                  <div class="carousel-item ">
+                    <div class="d-flex justify-content-center mb-3" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/seal.png' %}" class="p-5 mb-3" style="width: 350px; height: 350px;"> 
                     </div>
-
                     <div class="carousel-caption d-none d-md-block" >
                       <h5>First slide label</h5>
-                      <p>Some representative placeholder content for the first slide.</p>
+                      <button type="button" class="btn btn-warning btn-lg">Register</button>
                     </div>
                   </div>
 
-                  <div class="carousel-item active">
-
-                    <div class="d-flex justify-content-center p-5" style="background-color: blue;">
-                        <div class="p-5" style="background-color: rgb(0, 255, 89); margin-bottom: 100px;">
-                            <p> test </p>
-                        </div>
-                            
+                  <div class="carousel-item ">
+                    <div class="d-flex justify-content-center mb-3" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/dolphin.png' %}" class="p-5 mb-3" style="width: 350px; height: 350px;"> 
                     </div>
-
                     <div class="carousel-caption d-none d-md-block" >
                       <h5>First slide label</h5>
-                      <p>Some representative placeholder content for the first slide.</p>
+                      <button type="button" class="btn btn-warning btn-lg">Register</button>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item ">
+                    <div class="d-flex justify-content-center mb-3" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/seagull.png' %}" class="p-5 mb-3" style="width: 350px; height: 350px;"> 
+                    </div>
+                    <div class="carousel-caption d-none d-md-block" >
+                      <h5>First slide label</h5>
+                      <button type="button" class="btn btn-warning btn-lg">Register</button>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item ">
+                    <div class="d-flex justify-content-center mb-1" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/whale.png' %}" class="p-5" style="width: 350px; height: 350px;"> 
+                    </div>
+                    <div class="carousel-caption d-none d-md-block" >
+                      <button type="button" class="btn btn-warning btn-lg">Register</button>
                     </div>
                   </div>
 

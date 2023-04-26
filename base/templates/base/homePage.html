@@ -49,12 +49,13 @@
     
   @media (max-width: 575.98px) {
     #leftSide {
-      background-color: rgba(255, 255, 255, 0.322) !important;
+      background-color: rgba(255, 255, 255, 0.17) !important;
       text-align: center;
+      border-radius: 0px !important;
     }
 
     #leftSide h1 {
-      font-size: 50px !important;
+      font-size: 60px !important;
       color: #0f74bc !important;
     }
 
@@ -62,6 +63,13 @@
       display: flex !important;
       justify-content: center !important;
       
+      
+    }
+
+    #loginForm {
+      background-color: rgba(255, 255, 255, 0) !important;
+      width: 300px !important;
+
     }
 
 
@@ -117,7 +125,7 @@
 
       <!-- Right Side -->
       <div id="rightSide" class="col-12 col-sm-6  d-flex justify-content-end">
-        <div class = "shadow-lg mt-2" style="background-color: #0f74bcdf; width: 400px; height: 400px; border-radius: 30px;">
+        <div id = "loginForm" class = "shadow-lg mt-2" style="background-color: #0f74bcdf; width: 400px; height: 400px; border-radius: 30px;">
           
           <!-- Form -->
           <form method="POST" action="" class="login-form mt-4" style="font-weight: 500;">

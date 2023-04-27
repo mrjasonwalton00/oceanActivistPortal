@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.http import HttpResponseForbidden
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, login, logout  #used for User Authentication
 from django.contrib.auth.decorators import login_required #this is so we can restrict pages if you are not a logged in user
 from django.contrib import messages #used to send a flash message
 from django.contrib.auth.forms import UserChangeForm 
-from .forms import CreateUserForm, registerAnotherBuddy
+from .forms import CreateUserForm, registerAnotherBuddy, createPostForm
 from django.contrib import messages 
 from django.contrib.auth.models import Group 
 from .models import Profile, Buddies, Posts
@@ -203,7 +204,54 @@ def registerSeagull(request):
 
 
 # Portal Views--------------------------------------------------------------------------
+
+
 @login_required
+@csrf_exempt
 def portalPage(request):
-    return render(request, 'base/portalPages/portalPage.html' )
+    posts = Posts.objects.all().order_by('-date')
+    if request.method == 'POST':
+        # Check if the "delete_post" parameter is present in the POST request
+        if 'delete_post' in request.POST:
+            post_id = request.POST.get('delete_post')
+            try:
+                post = Posts.objects.get(id=post_id)
+                # Check if the current user is the owner of the post
+                if request.user == post.user:
+                    post.delete()
+                else:
+                    return HttpResponseForbidden()
+            except Posts.DoesNotExist:
+                pass
+        else:
+            form = createPostForm(request.POST, request.FILES)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.user = request.user
+                postBody = post.postBody
+                post.save()
+                return redirect('portalPage')
+    else:
+        form = createPostForm()
+
+    context = {
+        'form': form,
+        'posts': posts
+    }
+    return render(request, 'base/portalPages/portalPage.html', context)
+
+
+@login_required
+@csrf_exempt
+def delete_post(request, pk):
+    post = get_object_or_404(Posts, pk=pk)
+    if request.user == post.user:
+        post.delete()
+        messages.success(request, 'Post has been deleted successfully!')
+    else:
+        messages.warning(request, 'You are not authorized to delete this post.')
+    return redirect('portalPage')
+
+
+
 

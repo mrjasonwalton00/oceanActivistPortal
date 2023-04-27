@@ -28,6 +28,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['https://shorebuddies.up.railway.app/']
+
 
 # Application definition
 

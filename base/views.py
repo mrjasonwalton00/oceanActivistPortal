@@ -2,6 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout  #used for User Authentication
 from django.contrib.auth.decorators import login_required #this is so we can restrict pages if you are not a logged in user
 from django.contrib import messages #used to send a flash message
+from django.contrib.auth.forms import UserChangeForm 
+from .forms import CreateUserForm, registerAnotherBuddy
+from django.contrib import messages 
+from django.contrib.auth.models import Group 
+from .models import Profile, Buddies, Posts
+from django.contrib.auth.models import User
 
 
 # Home Page View (login logic)

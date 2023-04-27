@@ -69,6 +69,10 @@
     #loginForm {
       background-color: rgba(255, 255, 255, 0) !important;
       width: 300px !important;
+      display: flex;
+      justify-content: center;
+      margin-top: 100px !important;
+      
 
     }
 
@@ -76,10 +80,28 @@
         width: 250px;
     }
 
-    #createUserButton {
-        flex: auto;
-        
+    #buddyPicture img {
+      margin-top: 0 !important;
+      background-color: #0f74bc !important;
+      width: 200px !important;
+      height: 200px !important;
+      
     }
+
+    #buddyPicture p {
+      background-color: #0f74bc !important;
+      box-shadow: none !important;
+      
+    }
+
+    #buddyPicture {
+      background-color: #ffffff00 !important;
+      box-shadow: none !important;
+      
+    }
+
+
+    
 
 
 
@@ -117,19 +139,22 @@
     </div>
   </div>
 </div>
+
 <!-- End of Messages -->
 
 
+
+
 <!-- Main content -->
-  <div class="container-fluid d-flex justify-content-center" style="margin-top: 70px;">
+  <div class="container-fluid d-flex justify-content-center" style="margin-top: 80px;">
     <div class="row">
 
       <!-- Left Side -->
-      <div id = "leftSide" class="col-12 col-sm-6 d-flex justify-content-center" style="background-color: #ffffff2b; border-radius: 30px;">
+      <div id = "buddyPicture" class="col-12 col-sm-6 d-flex justify-content-center" style="background-color: #ffffff2b; border-radius: 30px;">
         <div style=" width: 500px; height: 200px;">
-            <h1 class="text-center p-3" style=" font-weight: 900; font-size: 30px; color: rgba(255, 255, 255, 0.82); color: #0f74bcdf;   "> Shelly the Sea Turtle </h1>
+            <p class="text-center rounded shadow-lg mt-4 " style="font-size: 20px; color: white; background-color: #0f74bcdf;" > Shelly the Sea Turtle </p>
             <a class="d-flex justify-content-center" id = "characterCard"  href="{% url 'registerTurtle' %}"> <img  src="{% static 'images/buddy-pictures/turtle.png' %}" alt="turtle" style="width: 300px; height: 300px; border-radius: 30px;"> </a>
-        </div>
+          </div>
       </div>
 
       <!-- Right Side -->
@@ -164,8 +189,8 @@
                 <input id = "bubble" type="text" name="registration_code" style="height: 40px;" class="form-control" id="registration_code" placeholder="Enter code">
             </div>   
 
-            <div class="p-2 d-flex justify-content-center">
-                <button id="createUserButton" type="submit" class="btn px-5 py-2" style="background-color: white; color: #0F75BC; font-weight: 500;">Create User</button>
+            <div  class="p-2 d-flex justify-content-center">
+                <button  type="submit" class="btn px-5 py-2" style="background-color: white; color: #0F75BC; font-weight: 500;">Create User</button>
             </div> 
 
         </form>
@@ -177,6 +202,16 @@
       </div>
     </div>
   </div>
+
+   <!-- Error Message -->
+   {% if form.errors %}
+   <div class="d-flex justify-content-center">
+       <div class="alert alert-danger alert-dismissible fade show" role="alert" style="list-style: none;">
+           {{form.errors}}
+       </div>
+   </div>
+  {% endif %}
+
 
 
 

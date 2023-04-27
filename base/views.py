@@ -8,9 +8,12 @@ from django.contrib import messages
 from django.contrib.auth.models import Group 
 from .models import Profile, Buddies, Posts
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 # Home Page View (login logic)
+@csrf_exempt
 def homePage(request):
     if request.user.is_authenticated: #if we get a registered user send them to the portal
         return redirect('portalPage') #portal home page

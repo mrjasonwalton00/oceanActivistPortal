@@ -24,19 +24,44 @@
 
 
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-        </div>
-    </div>
-</div>
 
-<div class="container rounded">
+<div class="container rounded mt-5">
 
     <div class="row">
-        <div class="col">
-            <h1 class="text-center" style="color: #0F75BC; font-weight: 900; font-size: 50px;"> Emma the Whale </h1>
-            <h5 class="text-center" style="color: #0F75BC;"> Premium Membership </h5>
+        <div class="col d-flex justify justify-content-center">
+            <form method="POST" action"" style="background-color: rgba(255, 255, 255, 0.55); border-radius: 30px; width: 500px;" class="p-5">
+                <h5 class="text-center text-white p-2 rounded shadow-lg" style="background-color: #ffffff20;"> Sign up for an account </h5>
+
+                {% csrf_token %}
+                <!-- Username -->
+                <div class="form-group p-2">
+                    <label for="{{form.username.id_for_label}}" style="color: white; font-weight: 500;">Create a username:</label>
+                    <input type="text" name="{{form.username.name}}" style="height: 50px;" class="form-control" id="{{form.username.id_for_label}}" placeholder="Username">
+                </div>
+
+                <!-- Password -->
+                <div class="form-groupc p-2">
+                    <label for="{{form.password1.id_for_label}}" style="color: white; font-weight: 500;"> Create a password:</label>
+                    <input type="password" name="{{form.password1.name}}" style="height: 50px;" class="form-control" id="{{form.password1.id_for_label}}" placeholder="Password">
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group p-2">
+                    <label for="{{form.password2.id_for_label}}" style="color: white; font-weight: 500;">Confirm Password:</label>
+                    <input type="password" name="{{form.password2.name}}" style="height: 50px;" class="form-control" id="{{form.password2.id_for_label}}" placeholder="Confirm Password">
+                </div> 
+
+                <!-- Registration code -->
+                <div class="form-group p-2">
+                    <label for="registration_code" style="color: white; font-weight: 500;">Registration Code:</label>
+                    <input type="text" name="registration_code" style="height: 50px;" class="form-control" id="registration_code" placeholder="Enter code">
+                </div>   
+
+                <div class="p-2 d-flex justify-content-center">
+                    <button id="createUserButton" type="submit" class="btn px-5 py-2" style="background-color: white; color: #0F75BC; font-weight: 500;">Create User</button>
+                </div> 
+
+            </form>
         </div>
     </div>
 
@@ -49,48 +74,7 @@
      </div>
     {% endif %}
 
-    <div class="row">
-        <!-- Left side  -->
-        <div class="col-6 p-5" style="background-color:white; border-radius: 30px;">
-            
-        
-            <div class="row">
-                <div class="col d-flex justify-content-center mt-5">
-                    <a id = "characterCard"  href="{% url 'registerWhale' %}"> <img class = "shadow-lg" src="{% static 'images/buddy-pictures/whale.png' %}" alt="whale" style="width: 300px; height: 300px; border-radius: 30px;"> </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right side -->
-        <div class="col-6 p-5">
-            <form method="POST" action"" style="background-color: #0F75BC; border-radius: 30px;" class="p-5">
-                <h5 class="text-center text-white p-2 rounded shadow-lg" style="background-color: #ffffff20;"> Sign up for an account </h5>
-                {% csrf_token %}
-                <div class="form-group p-2">
-                    <label for="{{form.username.id_for_label}}" style="color: white; font-weight: 500;">Create a username:</label>
-                    <input type="text" name="{{form.username.name}}" style="height: 50px;" class="form-control" id="{{form.username.id_for_label}}" placeholder="Username">
-                </div>
-                <div class="form-groupc p-2">
-                    <label for="{{form.password1.id_for_label}}" style="color: white; font-weight: 500;"> Create a password:</label>
-                    <input type="password" name="{{form.password1.name}}" style="height: 50px;" class="form-control" id="{{form.password1.id_for_label}}" placeholder="Password">
-                </div>
-                <div class="form-group p-2">
-                    <label for="{{form.password2.id_for_label}}" style="color: white; font-weight: 500;">Confirm Password:</label>
-                    <input type="password" name="{{form.password2.name}}" style="height: 50px;" class="form-control" id="{{form.password2.id_for_label}}" placeholder="Confirm Password">
-                </div> 
-                <div class="form-group p-2">
-                    <label for="registration_code" style="color: white; font-weight: 500;">Registration Code:</label>
-                    <input type="text" name="registration_code" style="height: 50px;" class="form-control" id="registration_code" placeholder="Enter code">
-                </div>   
-
-                <div class="p-2 d-flex justify-content-center">
-                    <button id="createUserButton" type="submit" class="btn px-5 py-2" style="background-color: white; color: #0F75BC; font-weight: 500;">Create User</button>
-                </div> 
-
-            </form>
-            
-        </div>
-    </div>
+    
 
 
 
@@ -99,6 +83,16 @@
 
 
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a id = "characterCard"  href="{% url 'registerWhale' %}"> <img class = "shadow-lg" src="{% static 'images/buddy-pictures/whale.png' %}" alt="whale" style="width: 300px; height: 300px; border-radius: 30px;"> </a>
+
+        </div>
+    </div>
+</div>
+
 
 <style>
     #createUserButton:hover {

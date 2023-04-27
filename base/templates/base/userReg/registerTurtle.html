@@ -4,7 +4,198 @@
 
 {% block content %}
 
-<h1> Register Page </h1>
+<!-- Styling -->
+<style>
+
+  body {
+    /* Background Picture */
+    background-image: url('/static/images/background-images/background1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #loginButton {
+    background-color: #5bb0ff;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    height: 40px;
+    width: 150px;
+  }
+
+
+  #loginButton:hover {
+    background-color: #635bff !important;
+    color: white !important;
+  }
+
+  #registerButton {
+    background-color: #0f74bc;
+    filter: brightness(1.2);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    height: 40px;
+    width:250px;
+  }
+
+
+  #registerButton:hover {
+    background-color: #9d89ff !important;
+    color: white !important;
+  }
+
+  
+  /* This is used for small screens (mobile) */
+  @media (max-width: 575.98px) {
+    #leftSide {
+      background-color: rgba(255, 255, 255, 0.17) !important;
+      text-align: center;
+      border-radius: 0px !important;
+    }
+
+    #leftSide h1 {
+      font-size: 50px !important;
+      color: #0f74bc !important;
+    }
+
+    #rightSide {
+      display: flex !important;
+      justify-content: center !important;
+      
+      
+    }
+
+    #loginForm {
+      background-color: rgba(255, 255, 255, 0) !important;
+      width: 300px !important;
+
+    }
+
+    #bubble {
+        width: 250px;
+    }
+
+    #createUserButton {
+        flex: auto;
+        
+    }
+
+
+
+    }
+  
+
+
+
+  
+
+
+
+
+</style>
+
+
+<!-- Messages -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'success' %}
+          <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            {{ message }}
+          </div>
+        {% endif %}
+        {% if message.tags == 'error' %}
+          <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- End of Messages -->
+
+
+<!-- Main content -->
+  <div class="container-fluid d-flex justify-content-center" style="margin-top: 70px;">
+    <div class="row">
+
+      <!-- Left Side -->
+      <div id = "leftSide" class="col-12 col-sm-6 d-flex justify-content-center" style="background-color: #ffffff2b; border-radius: 30px;">
+        <div style=" width: 500px; height: 200px;">
+            <h1 class="text-center p-3" style=" font-weight: 900; font-size: 30px; color: rgba(255, 255, 255, 0.82); color: #0f74bcdf;   "> Shelly the Sea Turtle </h1>
+            <a class="d-flex justify-content-center" id = "characterCard"  href="{% url 'registerTurtle' %}"> <img  src="{% static 'images/buddy-pictures/turtle.png' %}" alt="turtle" style="width: 300px; height: 300px; border-radius: 30px;"> </a>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+      <div id="rightSide" class="col-12 col-sm-6  d-flex justify-content-end">
+        <div id = "loginForm" class = "shadow-lg mt-2" style="background-color: #0f74bcdf; width: 400px; height: 450px; border-radius: 30px;">
+          
+          <!-- Form -->
+          <form id ="registerForm" method="POST" action"" style=" border-radius: 30px; width: 400px;" class="p-3">
+
+            {% csrf_token %}
+            <!-- Username -->
+            <div class="form-group p-2">
+                <label for="{{form.username.id_for_label}}" style="color: white; font-weight: 400;">Create a username:</label>
+                <input id = "bubble" type="text" name="{{form.username.name}}" style="height: 40px;" class="form-control" id="{{form.username.id_for_label}}" placeholder="Username">
+            </div>
+
+            <!-- Password -->
+            <div class="form-groupc p-2">
+                <label for="{{form.password1.id_for_label}}" style="color: white; font-weight: 400;"> Create a password:</label>
+                <input id = "bubble" type="password" name="{{form.password1.name}}" style="height: 40px;" class="form-control" id="{{form.password1.id_for_label}}" placeholder="Password">
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group p-2">
+                <label for="{{form.password2.id_for_label}}" style="color: white; font-weight: 400;">Confirm Password:</label>
+                <input id = "bubble" type="password" name="{{form.password2.name}}" style="height: 40px;" class="form-control" id="{{form.password2.id_for_label}}" placeholder="Confirm Password">
+            </div> 
+
+            <!-- Registration code -->
+            <div class="form-group p-2">
+                <label for="registration_code" style="color: white; font-weight: 400;">Registration Code:</label>
+                <input id = "bubble" type="text" name="registration_code" style="height: 40px;" class="form-control" id="registration_code" placeholder="Enter code">
+            </div>   
+
+            <div class="p-2 d-flex justify-content-center">
+                <button id="createUserButton" type="submit" class="btn px-5 py-2" style="background-color: white; color: #0F75BC; font-weight: 500;">Create User</button>
+            </div> 
+
+        </form>
+          
+
+          <!-- End form -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Footer -->
+  <div class="container-fluid" style="margin-top: 30px; height: 500px;">
+    
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

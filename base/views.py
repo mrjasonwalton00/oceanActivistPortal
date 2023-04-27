@@ -45,6 +45,7 @@ def registerPage(request):
 
 # Register Buddy Views-----------------------------------------------------------------
 
+@csrf_exempt
 def registerWhale(request):
     if request.user.is_authenticated:
         return redirect('portalPage') 
@@ -75,19 +76,126 @@ def registerWhale(request):
         return render(request, 'base/userReg/registerWhale.html', context)
 
 
+@csrf_exempt
 def registerDolphin(request):
-    return render(request, 'base/userReg/registerDolphin.html' )
+    if request.user.is_authenticated:
+        return redirect('portalPage') 
+    else:
+        form = CreateUserForm()
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+                if registration_code != 'dolphin': # check if the registration code is correct
+                    messages.error(request, 'Invalid registration code.') # send an error message
+                    return redirect('registerDolphin') # redirect back to the same page
+                else:
+                    user = form.save()
+                    group = Group.objects.get(name='premium')
+                    user.groups.add(group)
+                    username = user.username
 
+                    profile = Profile.objects.create(user=user, bio='', firstName='', lastName='', age=None, profile_picture='static/images/profile-pictures/default.jpg')
+                    profile.save()
+
+                    buddy = 'dolphin'
+                    Buddies.objects.create(user=user, name=buddy, picture='static/images/buddy-pictures/dolphin.png')
+
+                    messages.success(request, 'Account was created for ' + username )
+                    return redirect('homePage')
+        context = {'form':form,}
+        return render(request, 'base/userReg/registerDolphin.html', context)
+
+@csrf_exempt
 def registerTurtle(request):
-    return render(request, 'base/userReg/registerTurtle.html' )
+    if request.user.is_authenticated:
+        return redirect('portalPage') 
+    else:
+        form = CreateUserForm()
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+                if registration_code != 'turtle': # check if the registration code is correct
+                    messages.error(request, 'Invalid registration code.') # send an error message
+                    return redirect('registerTurtle') # redirect back to the same page
+                else:
+                    user = form.save()
+                    group = Group.objects.get(name='premium')
+                    user.groups.add(group)
+                    username = user.username
+
+                    profile = Profile.objects.create(user=user, bio='', firstName='', lastName='', age=None, profile_picture='static/images/profile-pictures/default.jpg')
+                    profile.save()
+
+                    buddy = 'turtle'
+                    Buddies.objects.create(user=user, name=buddy, picture='static/images/buddy-pictures/turtle.png')
+
+                    messages.success(request, 'Account was created for ' + username )
+                    return redirect('homePage')
+        context = {'form':form,}
+        return render(request, 'base/userReg/registerTurtle.html', context)
 
 
-
+@csrf_exempt
 def registerSeal(request):
-    return render(request, 'base/userReg/registerSeal.html' )
+    if request.user.is_authenticated:
+        return redirect('portalPage') 
+    else:
+        form = CreateUserForm()
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+                if registration_code != 'seal': # check if the registration code is correct
+                    messages.error(request, 'Invalid registration code.') # send an error message
+                    return redirect('registerSeal') # redirect back to the same page
+                else:
+                    user = form.save()
+                    group = Group.objects.get(name='premium')
+                    user.groups.add(group)
+                    username = user.username
 
+                    profile = Profile.objects.create(user=user, bio='', firstName='', lastName='', age=None, profile_picture='static/images/profile-pictures/default.jpg')
+                    profile.save()
+
+                    buddy = 'seal'
+                    Buddies.objects.create(user=user, name=buddy, picture='static/images/buddy-pictures/seal.png')
+
+                    messages.success(request, 'Account was created for ' + username )
+                    return redirect('homePage')
+        context = {'form':form,}
+        return render(request, 'base/userReg/registerSeal.html', context)
+
+@csrf_exempt
 def registerSeagull(request):
-    return render(request, 'base/userReg/registerSeagull.html' )
+    if request.user.is_authenticated:
+        return redirect('portalPage') 
+    else:
+        form = CreateUserForm()
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+                if registration_code != 'seagull': # check if the registration code is correct
+                    messages.error(request, 'Invalid registration code.') # send an error message
+                    return redirect('registerSeagull') # redirect back to the same page
+                else:
+                    user = form.save()
+                    group = Group.objects.get(name='premium')
+                    user.groups.add(group)
+                    username = user.username
+
+                    profile = Profile.objects.create(user=user, bio='', firstName='', lastName='', age=None, profile_picture='static/images/profile-pictures/default.jpg')
+                    profile.save()
+
+                    buddy = 'seagull'
+                    Buddies.objects.create(user=user, name=buddy, picture='static/images/buddy-pictures/seagull.png')
+
+                    messages.success(request, 'Account was created for ' + username )
+                    return redirect('homePage')
+        context = {'form':form,}
+        return render(request, 'base/userReg/registerSeagull.html', context)
 
 
 # End of Register Buddy Views-----------------------------------------------------------

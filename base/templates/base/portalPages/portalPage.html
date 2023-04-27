@@ -3,6 +3,10 @@
 
 {% block content %}
 
+
+
+
+
 <style>
     body {
         /* background: linear-gradient(#ffffff, #0F75BC) !important; */
@@ -10,14 +14,17 @@
         background-size: cover;
         background-repeat: no-repeat;
     }
+
+    /* Used for smaller screens */
+    @media (max-width: 575.98px) {
+        #Maincontainer {
+            width: 320px !important;
+        }
+        
+    }
 </style>
 
-
-
-
-
-
-
+<!-- This container is for the navbar -->
 <div class="container">
     <div class="row">
         <div class="col">
@@ -26,233 +33,93 @@
     </div>
 </div>
 
-
-
-<div class="container-fluid p-5" style="margin-top: 50px;">
-    
+<!-- Width for this container is 800px -->
+<div id="Maincontainer" class="container bg-info" style="margin-top: 150px; width: 800px;">
     <div class="row">
-
-        <!-- Left bar -->
-        <div class="col-2">
-            
-            <!-- Nav bar 3 goes here -->
-
-
-
-
-        </div> <!-- End of Left bar -->
-
-
-
-        <!-- Main Content -->
-        <div class="col-12 col-sm-7 rounded shadow-lg p-5">
-
-
-
-
-
-
-
-            <!-- Banner -->
-            <div class="container-fluid  px-5">
-                <div class="row  d-flex justify-content-center py-2" style="background-image: url('/static/images/background-images/background2.jpeg');
-                background-size: cover;
-                background-repeat: no-repeat;
-                
-                border-radius: 30px;">
-
-                <a class="d-flex justify-content-center" href="{% url 'portalPage' %}"> <img src="{% static 'images/logos/logo2.png' %}" style="border-radius: 30px; width: 100px; height: 100px; margin-top: 5px;"> </img> </a> 
-                <a href="{% url 'logout' %}">
-                    <li id="test" class="nav-item p-1 mt-3" style="color: #0F75BC; font-weight: bold;"> 
-                        <p style="display: inline;"> <i class="fa-solid fa-right-from-bracket"></i> Logout </p> 
-                    </li>
-                </a>
-                
+        <div id="banner" class="col d-flex justify-content-center">
+            <div class="bg-danger" style="width: 800px; border-radius: 30px;">
+                <!-- Banner Picture  -->
+                <div class="d-flex justify-content-center">
+                    <img src="{% static 'images/logos/logo2.png' %}" style="width: 230px; height: 200px;">
+                </div>
+                <!-- Header -->
+                <h1 class="text-center"> Ocean Activist Portal </h1>
             </div>
-                <div class="row">
-                    <div class="col shaodw-lg rounded">
-                        <div class="rounded shadow-lg mt-5 mx-1">
-                            <div class="card" style="border-radius: 30px; ">
-            
-                                <div class="card-body">
-                                    <img src="{{ user.profile.profile_picture.url }}" style="border-radius: 30px; width: 60px; height: 60px; margin-top: 5px; border-style: solid; text-decoration: none; border-color: #0F75BC;">
-                                    <form method="POST" action"" enctype="multipart/form-data"  >
-                                        {% csrf_token %}
-                                        
-                                      
-                                        <div class="form-group p-1">
-                                            <label for="{{form.postBody.id_for_label}}" style="color: #008bc8; font-weight: 500;">What's on your mind {{ user.profile.firstName }}?</label>
-                                            <input type="text" name="{{form.postBody.name}}" style="height: 50px;" class="form-control" id="{{form.postBody.id_for_label}}">
-                                        </div>
-                                    
-                                      
-                                        <div class = "p-1">
-                                            <button type="submit" class="btn" style="background-color: #008bc8; color: white; font-weight: 500;"> Post  </button>
-                                            {{form.errors}} 
-                                        </div>     
-                                      </form>
-                                </div>
-            
-                                
-                            </div>
+        </div> 
+    </div> 
+
+    <!-- Make a Post -->
+    <div class="row mt-5" >
+        <div class="col d-flex justify-content-center bg-danger">
+            <!-- Make post card  -->
+            <div class="card " style="border-radius: 30px; width: 300px; ">
+                <div class="card-body">
+                    <img src="{{ user.profile.profile_picture.url }}" style="border-radius: 30px; width: 60px; height: 60px; margin-top: 5px; border-style: solid; text-decoration: none; border-color: #0F75BC;">
+                    <form method="POST" action"" enctype="multipart/form-data"  >
+                        {% csrf_token %}
+                        <div class="form-group p-1">
+                            <label for="{{form.postBody.id_for_label}}" style="color: #008bc8; font-weight: 500;">What's on your mind {{ user.profile.firstName }}?</label>
+                            <input type="text" name="{{form.postBody.name}}" style="height: 50px;" class="form-control" id="{{form.postBody.id_for_label}}">
                         </div>
-
-                    </div>
-                    
-
-
-
+                        <div class = "p-1">
+                            <button type="submit" class="btn" style="background-color: #008bc8; color: white; font-weight: 500;"> Post  </button>
+                            {{form.errors}} 
+                        </div>     
+                      </form>
                 </div>
             </div>
+        </div> 
+    </div> 
 
-            <!-- Button trigger modal -->
-
-  <!-- Modal -->
-  
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="POST" action"" enctype="multipart/form-data"  >
-                {% csrf_token %}
-                
-              
-                <div class="form-group p-1">
-                    <label for="{{form.postBody.id_for_label}}" style="color: #008bc8; font-weight: 500;">New Post </label>
-                    <input type="text" name="{{form.postBody.name}}" style="height: 50px;" class="form-control" id="{{form.postBody.id_for_label}}">
+    <!-- List of Posts: -->
+    <div class="row mt-5">
+        <div class="col bg-danger d-flex justify-content-center flex-wrap">
+            {% for post in posts %}
+            <!-- Card Header -->
+            <div class="card shadow-lg mt-5 " style="background-color: rgba(255, 255, 255, 0.836); border-radius: 30px; width: 600px;  ">
+                <div class="card-header">
+                    <div class="row">
+                        <!-- Left Side -->
+                        <div class="col-6">
+                            <img src="{{ post.user.profile.profile_picture.url }}" style="border-radius: 30px; width: 60px; height: 60px; margin-top: 5px; border-style: solid; text-decoration: none; border-color: #0F75BC;">
+                            <p style="font-weight: 700; display: inline; color: #0F75BC;">{{ post.user }}</p>
+                        </div>
+                        <!-- Right Side -->
+                        <div class="col-6">
+                            {% if post.user == request.user %}
+                            <!-- Delete Button -->
+                            <form method="POST" action="{% url 'delete_post' post.pk %}">
+                            {% csrf_token %}
+                                <div class = "d-flex justify-content-end">
+                                    <button type="submit" class="btn"><i class="fa-solid fa-delete-left"></i></button>
+                                </div>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
-            
-              
-                <div class = "p-1">
-                    <button type="submit" class="btn" style="background-color: #008bc8; color: white; font-weight: 500;">Make post  </button>
-                    {{form.errors}} 
-                </div>     
-              </form>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <p>{{ post.postBody }}</p>
+                </div>
+                <!-- Card Footer -->
+                <div class="card-footer text-muted">
+                    <p>Posted on: {{ post.date|date:"M j, Y g:iA" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div> <!-- End of container -->
+
+<!-- Footer -->
+<div class="container" style="height: 2000px;">
+    <div class="row">
+        <div class="col">
+
         </div>
     </div>
 </div>
-
-
-
-
-           
-            
-            
-            
-
-           
-
-            <!-- Posts -->
-            {% for post in posts %}
-    <div class=" shadow-lg mt-5 mx-5">
-        <div class="card shadow-lg" style="background-color: rgba(255, 255, 255, 0.836); border-radius: 30px;  ">
-            <div class="card-header">
-                <div>
-                    {% if post.user == request.user %}
-                <form method="POST" action="{% url 'delete_post' post.pk %}">
-                    {% csrf_token %}
-                    <div class = "d-flex justify-content-end">
-                        <button type="submit" class="btn"><i class="fa-solid fa-delete-left"></i></button>
-                    </div>
-                </form>
-                {% endif %}
-
-                </div>
-                <img src="{{ post.user.profile.profile_picture.url }}" style="border-radius: 30px; width: 60px; height: 60px; margin-top: 5px; border-style: solid; text-decoration: none; border-color: #0F75BC;">
-                <p style="font-weight: 700; display: inline; color: #0F75BC;">{{ post.user }}</p>
-                
-                
-                
-
-
-            </div>
-            <div class="card-body">
-                <p>{{ post.postBody }}</p>
-            </div>
-            <div class="card-footer text-muted">
-                <p>Posted on: {{ post.date|date:"M j, Y g:iA" }}</p>
-            </div>
-        </div>
-    </div>
-{% empty %}
-    <p>No posts yet.</p>
-{% endfor %}
-
-
-
-
-
-
-
-
-        
-        </div> <!-- End of Main Content -->
-
-
-        <!-- Right bar -->
-        <div class=" col-12 col-sm-3">
-
-            <div class="d-flex justify-content-center">
-                <div class="card shadow-lg" style="width: 15rem; margin-top: 40px; margin-left: 40px; border-radius: 30px;">
-                    <!-- Image goes here -->
-                    <div class="card-body">
-                      <a class="d-flex justify-content-center btn" style="background-color: #0F75BC; color: white; " href="#">Play Now</a>
-                    </div>
-                </div>
-
-            </div>
-
-           
-
-            <!-- <div class="p-5 d-flex justify-content-center" style="margin-left: 40px; background-color: #edffab;">
-                <img  src="{% static 'images/extra/game1thumbnail.png' %}" style="height: 200px; width: 200px; border-radius: 20px;"> 
-            </div> -->
-           
-
-            <div class="d-flex justify-content-center" style="margin-top: 50px; margin-left: 40px;">
-                <!-- Image goes here -->
-            </div>
-
-           
-
-
-
-            
-            
-            
-            
-
-            
-            
-
-            
-            
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-    </div> <!-- End of Row -->
-</div> <!-- End of Container -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 {% endblock %}

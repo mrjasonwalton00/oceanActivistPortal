@@ -29,6 +29,31 @@
         text-decoration: none !important;
        
     }
+    /* Used for smaller screens */
+    @media (max-width: 575.98px) {
+        #dots {
+            display: none !important;
+        }
+
+        #header {
+            display: none !important;
+        }
+
+        #navBarIcon {
+            font-size: 20px !important;
+            margin-left: 15px !important;
+        }
+        #profileIcon {
+            margin-right: 30px !important;
+        }
+
+        #navLogo1 {
+            width: 65px !important;
+            height: 65px !important;
+            margin-top: 8px !important;
+        }
+        
+    }
 
 
 </style>
@@ -40,78 +65,52 @@
 <div class="container-fluid  p-2" style="background-color: rgb(255, 255, 255); position: fixed; z-index:1;">
     <div class="row">
 
-        <div class="col-4 d-flex justify-content-start text-center p-2">
-            
-            <div class="col-3">
-               <a id = "profileButton" href="{% url 'portalPage' %}"> <img src="{% static 'images/logos/logo2.png' %}" style="border-radius: 30px; width: 60px; height: 60px; margin-top: 5px;"> </img> </a> 
+        <!-- Section 1 -->
+        <div id="section1" class="col-4 d-flex justify-content-start text-center p-2">
+            <!-- Logo -->
+            <div class="col-3 px-5">
+               <a  href="{% url 'portalPage' %}"> <img id="navLogo1" src="{% static 'images/logos/logo1.png' %}" style="border-radius: 30px; width: 80px; height: 80px; margin-top: 5px;"> </img> </a> 
             </div>
 
-            <div class="col-9 d-flex justify-content-start text-center" style="margin-top: 20px;">
-                <a href="{% url 'portalPage' %}" id = "profileButton" style="text-decoration: none;"> <h5 style="font-weight: 900; color: #0F75BC;"> Shore Buddies </h5> </a>
-            </div>
-
-            
+            <!-- Header -->
+            <div class="col-9 d-flex justify-content-center text-center" style="margin-top: 35px;">
+                <a id="header" href="{% url 'portalPage' %}" id = "profileButton" style="text-decoration: none;"> <h5 style="font-weight: 900; color: #0F75BC;"> Ocean Activist Portal </h5> </a>
+            </div>  
         </div>
 
-        
-
-        <div class="col-4 d-flex justify-content-center text-center p-2">
-
+        <!-- Section 2 -->
+        <div class="col-4 d-flex justify-content-center text-center p-2 mt-2">
+            <!-- Home Icon -->
             <div class="col-4 d-flex justify-content-center text-center">
-
                 <div style="font-size: 30px; margin-top: 12px;">
                     <a id = "navBarIcon" href="{% url 'portalPage' %}"> <i class="fa-solid fa-house"></i> </a>
                 </div>
             </div>
-
-
-            <div class="col-4 d-flex justify-content-center text-center">
-                
+            <!-- Video Icon -->
+            <div class="col-4 d-flex justify-content-center text-center"> 
                 <div style="font-size: 30px; margin-top: 12px;">
                     <a id = "navBarIcon" href="#"> <i class="fa-sharp fa-solid fa-circle-play"></i> </a>
                 </div>
-
             </div>
-
-
+            <!-- Game Icon -->
             <div class="col-4 d-flex justify-content-center text-center">
-                
                 <div style="font-size: 30px; margin-top: 12px;">
                     <a id = "navBarIcon" href="#"> <i class="fa-solid fa-gamepad"></i> </a>
                 </div>
-                
             </div>
         </div>
-
-        <div class="col-4 d-flex justify-content-end text-center p-2">
-            
-            
-            <div class="col-3 d-flex justify-content-center text-center">
+        <!-- Section 3 -->
+        <div class="col-4 d-flex justify-content-end text-center p-2 mt-2">  
+              <!-- Dots Icon  -->
+            <div id="dots" class="col-3 d-flex justify-content-center text-center">
                 <div style="font-size: 30px; margin-top: 12px;">
                     <a id = "navBarIcon" href="#"> <i class="fa-solid fa-grip"></i> </a>
                 </div>
             </div>
-
-
-           
-
-            
-
-
-
-            <div class="col-3 d-flex justify-content-center text-center">
+            <!-- Profile Picture -->
+            <div id="profileIcon" class="col-3 d-flex justify-content-center text-center">
                 <a  href="#"> <img id = "profileButton" src="{{ request.user.profile.profile_picture.url }}" style="border-radius: 30px; width: 60px; height: 60px; margin-top: 5px; border-style: solid;"> </img> </a>
             </div>
-                
         </div>
-
-
-
-
-        </div>
-
-       
-        
-         
     </div>
 </div>

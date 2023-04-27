@@ -27,6 +27,7 @@ def homePage(request):
         context = {}
         return render(request, 'base/homePage.html', context) #show the login page again so they can re enter the right credentials
 
+
 #logout view
 @login_required(login_url='homePage')
 def logoutUser(request):
@@ -41,6 +42,35 @@ def registerPage(request):
 
 # Register Buddy Views-----------------------------------------------------------------
 
+def registerWhale(request):
+    if request.user.is_authenticated:
+        return redirect('portalPage') 
+    else:
+        form = CreateUserForm()
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+                if registration_code != 'whale': # check if the registration code is correct
+                    messages.error(request, 'Invalid registration code.') # send an error message
+                    return redirect('registerWhale') # redirect back to the same page
+                else:
+                    user = form.save()
+                    group = Group.objects.get(name='premium')
+                    user.groups.add(group)
+                    username = user.username
+
+                    profile = Profile.objects.create(user=user, bio='', firstName='', lastName='', age=None, profile_picture='static/images/profile-pictures/default.jpg')
+                    profile.save()
+
+                    buddy = 'whale'
+                    Buddies.objects.create(user=user, name=buddy, picture='static/images/buddy-pictures/whale.png')
+
+                    messages.success(request, 'Account was created for ' + username )
+                    return redirect('homePage')
+        context = {'form':form,}
+        return render(request, 'base/userReg/registerWhale.html', context)
+
 
 def registerDolphin(request):
     return render(request, 'base/userReg/registerDolphin.html' )
@@ -48,8 +78,7 @@ def registerDolphin(request):
 def registerTurtle(request):
     return render(request, 'base/userReg/registerTurtle.html' )
 
-def registerWhale(request):
-    return render(request, 'base/userReg/registerWhale.html' )
+
 
 def registerSeal(request):
     return render(request, 'base/userReg/registerSeal.html' )

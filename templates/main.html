@@ -48,6 +48,9 @@
 {% if request.user.is_authenticated %}
     {% include 'navBar2.html' %}
 
+    {% if request.resolver_match.url_name == 'portalPage' %}
+        {% include 'navBar3.html' %}
+    {% endif %}
 {% endif %}
 
 

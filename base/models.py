@@ -30,10 +30,13 @@ class Profile(models.Model):
     lastName = models.CharField(max_length=100, null=True)
     bio = models.TextField(null=True)
     age = models.IntegerField(null=True)
-    profile_picture = models.ImageField(upload_to='static/images', null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='static/images/profile-pictures', null=True, blank=True)
     
+
+
     def __str__(self):
         return str(self.user)
+
     
 #------------------------------------------------------------------------------------------
 

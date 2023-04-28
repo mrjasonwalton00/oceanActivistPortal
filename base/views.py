@@ -1,15 +1,18 @@
+import os
+from django.conf import settings
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, login, logout  #used for User Authentication
 from django.contrib.auth.decorators import login_required #this is so we can restrict pages if you are not a logged in user
 from django.contrib import messages #used to send a flash message
 from django.contrib.auth.forms import UserChangeForm 
-from .forms import CreateUserForm, registerAnotherBuddy, createPostForm
+from .forms import CreateUserForm, registerAnotherBuddy, createPostForm, ProfileUpdateForm
 from django.contrib import messages 
 from django.contrib.auth.models import Group 
 from .models import Profile, Buddies, Posts
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.views import generic
 
 
 
@@ -233,7 +236,6 @@ def portalPage(request):
                 return redirect('portalPage')
     else:
         form = createPostForm()
-
     context = {
         'form': form,
         'posts': posts
@@ -251,6 +253,66 @@ def delete_post(request, pk):
     else:
         messages.warning(request, 'You are not authorized to delete this post.')
     return redirect('portalPage')
+
+@login_required
+@csrf_exempt
+def videoPage(request):
+    return render(request, 'base/portalPages/videoPage.html' )
+
+@login_required
+@csrf_exempt
+def gamePage(request):
+    return render(request, 'base/portalPages/gamePage.html' )
+
+
+# User Profile View:
+@login_required
+@csrf_exempt
+def profilePage(request):
+    # Get the current user's posts
+    user_posts = Posts.objects.filter(user=request.user).order_by('-date')
+    user = request.user
+    buddies = Buddies.objects.filter(user=user)
+    # Get the form for updating the user's profile
+    form = ProfileUpdateForm(instance=request.user.profile)
+    
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            firstName = profile.firstName
+            lastName = profile.lastName
+            age = profile.age
+            bio = profile.bio
+            if 'profile_picture' in request.FILES:
+                profile.profile_picture = request.FILES['profile_picture']
+            profile.save()
+            return redirect('profilePage')
+
+    context = {
+        'form': form,
+        'user_posts': user_posts,
+        'buddies': buddies,
+    }
+    
+    return render(request, 'base/portalPages/profilePage.html', context)
+
+
+
+
+
+
+
+
+
+@login_required
+@csrf_exempt
+def regAnotherBuddy(request):
+    return render(request, 'base/portalPages/regAnotherBuddy.html' )
+
+    
+
+
 
 
 

@@ -89,13 +89,13 @@
             <!-- Video Icon -->
             <div class="col-4 d-flex justify-content-center text-center"> 
                 <div style="font-size: 30px; margin-top: 12px;">
-                    <a id = "navBarIcon" href="#"> <i class="fa-sharp fa-solid fa-circle-play"></i> </a>
+                    <a id = "navBarIcon" href="{% url 'videoPage' %}"> <i class="fa-sharp fa-solid fa-circle-play"></i> </a>
                 </div>
             </div>
             <!-- Game Icon -->
             <div class="col-4 d-flex justify-content-center text-center">
                 <div style="font-size: 30px; margin-top: 12px;">
-                    <a id = "navBarIcon" href="#"> <i class="fa-solid fa-gamepad"></i> </a>
+                    <a id = "navBarIcon" href="{% url 'gamePage' %}"> <i class="fa-solid fa-gamepad"></i> </a>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
             </div>
             <!-- Profile Picture -->
             <div id="profileIcon" class="col-3 d-flex justify-content-center text-center">
-                <a  href="#"> <img id = "profileButton" src="{{ request.user.profile.profile_picture.url }}" style="border-radius: 30px; width: 60px; height: 60px; margin-top: 5px; border-style: solid;"> </img> </a>
+                <a  href="{% url 'profilePage' %}"> <img id = "profileButton" src="{{ request.user.profile.profile_picture.url }}" style="border-radius: 30px; width: 60px; height: 60px; margin-top: 5px; border-style: solid;"> </img> </a>
             </div>
         </div>
     </div>

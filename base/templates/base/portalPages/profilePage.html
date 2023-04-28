@@ -1,0 +1,193 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+<!-- Displays name  -->
+<div class="container rounded shadow-lg" style="margin-top: 150px;">
+    <div class="row">
+        <div class="col-12 col-sm-8  d-flex justify-content-start align-items-center py-1 px-5">
+            <a href="{% url 'profilePage' %}">
+                <img id="profileButton" src="{{  request.user.profile.profile_picture.url }}" style="border-radius: 75px; width: 150px; height: 150px; margin-top: 5px; border-style: solid; display: inline-block;">
+            </a>
+            <h1 style="display: inline-block; margin-left: 20px; font-weight: bold; color: #0F75BC;">{{ user.username }}</h1>
+            <span class="badge rounded-pill text-bg-warning"> {% for group in user.groups.all %}
+                {{ group.name }}
+            {% empty %}
+                No groups
+            {% endfor %} </span>
+        </div>
+
+        <div class="col-12 col-sm-4 d-flex justify-content-end align-items-end py-2">
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #0F75BC;">
+                Edit Profile
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal  -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action"" enctype="multipart/form-data"  >
+                {% csrf_token %}
+                <div class="form-group p-1">
+                    <label for="{{form.firstName.id_for_label}}" style="color: #008bc8; font-weight: 500;">first</label>
+                    <input type="text" name="{{form.firstName.name}}" style="height: 50px;" class="form-control" id="{{form.firstName.id_for_label}}" value="{{form.firstName.value}}">
+                </div>
+              
+                <div class="form-group p-1">
+                    <label for="{{form.lastName.id_for_label}}" style="color: #008bc8; font-weight: 500;">last</label>
+                    <input type="text" name="{{form.lastName.name}}" style="height: 50px;" class="form-control" id="{{form.lastName.id_for_label}}" value="{{form.lastName.value}}">
+                </div>
+              
+                <div class="form-group p-1">
+                  <label for="{{form.age.id_for_label}}" style="color: #008bc8; font-weight: 500;">Age</label>
+                  <input type="number" name="{{form.age.name}}" style="height: 50px;" class="form-control" id="{{form.age.id_for_label}}" value="{{form.age.value}}">
+                </div>
+              
+                <div class="form-group p-1">
+                  <label for="{{form.bio.id_for_label}}" style="color: #008bc8; font-weight: 500;">Bio</label>
+                  <input type="text" name="{{form.bio.name}}" style="height: 50px;" class="form-control" id="{{form.bio.id_for_label}}" value="{{form.bio.value}}">
+               </div>
+              
+               <div class="form-group p-1">
+                  <label for="{{form.profile_picture.id_for_label}}" style="color: #008bc8; font-weight: 500;">Profile Picture</label>
+                  <input type="file" name="{{form.profile_picture.name}}" class="form-control-file" id="{{form.profile_picture.id_for_label}}">
+               </div> 
+                
+                
+                      
+                <div class = "p-1">
+                    <button type="submit" class="btn" style="background-color: #008bc8; color: white; font-weight: 500;"> Submit </button>
+                    {{form.errors}} 
+                </div>     
+              </form>
+        </div>
+    </div>
+</div>
+
+<!-- Buddies -->
+<div class="container  px-5 py-3">
+    <div class="row d-flex justify-content-center">
+        {% with sliced_buddies=buddies|slice:":5" %}
+            {% for buddy in sliced_buddies %}
+                <div class="col-12 col-sm-2">
+                    {% if buddy.picture %}
+                        <a href="#">
+                            <img id="profileButton" src="{{ buddy.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC;">
+                        </a>
+                    {% else %}
+                        <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC; display: flex; justify-content: center; align-items: center;">
+                            <a href="{% url 'regAnotherBuddy' %}">
+                                <i class="fa-solid fa-plus" style="font-size: 30px; color: #0F75BC;"></i>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endwith %}
+        <div class="col-12 col-sm-2">
+            <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC; display: flex; justify-content: center; align-items: center;">
+                <a href="{% url 'regAnotherBuddy' %}">
+                    <i class="fa-solid fa-plus" style="font-size: 30px; color: #0F75BC;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5" >
+    <div class="row">
+
+        <div class="col-12 col-sm-3  p-2" style="height: 400px;">
+
+            <div class="vstack gap-4 rounded shadow-lg py-5">
+                <div class="p-2 shadow-lg rounded">{{ user.profile.firstName }}  {{ user.profile.lastName }}</div>
+                <div class="p-2 shadow-lg rounded"> Age: {{ user.profile.age }} </div>
+                <div class="p-2 shadow-lg rounded"> Bio: {{ user.profile.bio }}</div>
+                <div class="p-2 shadow-lg rounded"> Membership:
+                    {% for group in user.groups.all %}
+                        {{ group.name }}
+                    {% empty %}
+                        No groups
+                    {% endfor %}
+                </div>
+            </div>
+
+            
+            
+        </div>
+
+        
+
+        <div class="col-12 col-sm-1">
+
+        </div>
+
+        <div class="col-12 col-sm-8 rounded shadow-lg" style="background-image: url('/static/images/background-images/background2.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;">
+            {% for post in user_posts %}
+            
+            <!-- Post Card -->
+            <div class="rounded shadow-lg mt-5 mx-5">
+                <div class="card">
+
+                    <div class="card-header">
+                        <div class="row">
+                            <!-- Left Side -->
+                            <div class="col-6">
+                                <img src="{{ post.user.profile.profile_picture.url }}" style="border-radius: 30px; width: 40px; height: 40px; margin-top: 5px; border-style: solid; text-decoration: none; border-color: #0F75BC;">
+                                <p style="font-weight: 700; display: inline; color: #0F75BC;">{{ post.user }}</p>
+                            </div>
+                            <!-- Right Side -->
+                            <div class="col-6">
+                                {% if post.user == request.user %}
+                                <!-- Delete Button -->
+                                <form method="POST" action="{% url 'delete_post' post.pk %}">
+                                {% csrf_token %}
+                                    <div class = "d-flex justify-content-end">
+                                        <button type="submit" class="btn"><i class="fa-solid fa-delete-left"></i></button>
+                                    </div>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+
+                        
+                     </div>
+
+                    <div class="card-body">
+                        <p>{{ post.postBody }}</p>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        <p>Posted on: {{ post.date|date:"M j, Y g:iA" }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No posts yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

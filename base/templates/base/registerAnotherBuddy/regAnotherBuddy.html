@@ -1,0 +1,145 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+ body {
+    /* Background Picture */
+    background-image: url('/static/images/background-images/background1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #registerButton {
+    background-color: rgba(255, 255, 255, 0.525);
+    width: 300px; 
+    border-radius: 30px;
+    color: white;
+  }
+
+  #registerButton:hover {
+    background-color: #0f74bcdf;
+  }
+
+ /* This is used for small screens (mobile) */
+ @media (max-width: 575.98px) {
+  #cardButton {
+    display: block !important;
+  }
+
+  #registerButton {
+    width: fit-content;
+  }
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" style="margin-top: 150px;">
+  
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+
+
+            <!-- Carousel -->
+            <div id="carouselExampleCaptions" class="carousel slide " style="width: 500px;  border-radius: 30px; background-color: #0f74bcdf ">
+              <h1 class="text-center py-2" style="font-weight: 900; font-size: 50px; color: rgba(255, 255, 255, 0.82); background-color: rgba(255, 255, 255, 0.525); border-top-right-radius: 30px; border-top-left-radius: 30px;  "> Pick a Buddy! </h1>
+
+              <div class="carousel-indicators" style="margin-top: 100px;">
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+              </div>
+
+
+                <div class="carousel-inner">
+
+                  <!-- Item 1 -->
+                  <div class="carousel-item active">
+                    <div class="d-flex justify-content-center mb-3" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/turtle.png' %}" class="p-5 mb-3" style="width: 300px; height: 300px;"> 
+                    </div>
+                    <div class="carousel-caption" style="margin-top: 50px;" >
+                      <a id="registerButton" class="btn btn-lg" href="{% url 'registerTurtle2' %}" role="button">Shelly the Sea Turtle</a>
+                    </div>
+                  </div>
+                  
+
+                  <!-- Item 2 -->
+                  <div class="carousel-item ">
+                    <div class="d-flex justify-content-center mb-3" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/seal.png' %}" class="p-5 mb-3" style="width: 300px; height: 300px;"> 
+                    </div>
+                    <div id = "cardButton" class="carousel-caption " >
+                      <a id="registerButton" class="btn btn-lg" href="{% url 'registerSeal2' %}" role="button">Sammy the Seal</a>
+                    </div>
+                  </div>
+
+                  <!-- Item 3 -->
+                  <div class="carousel-item ">
+                    <div class="d-flex justify-content-center mb-3" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/dolphin.png' %}" class="p-5 mb-3" style="width: 300px; height: 300px;"> 
+                    </div>
+                    <div class="carousel-caption " >
+                      <a id="registerButton" class="btn btn-lg" href="{% url 'registerDolphin2' %}" role="button">Fin the Dolphin</a>
+                    </div>
+                  </div>
+
+                  <!-- Item 4 -->
+                  <div class="carousel-item ">
+                    <div class="d-flex justify-content-center mb-3" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/seagull.png' %}" class="p-5 mb-3" style="width: 300px; height: 300px;"> 
+                    </div>
+                    <div class="carousel-caption " >
+                      <a id="registerButton" class="btn btn-lg" href="{% url 'registerSeagull2' %}" role="button">Stephen the Seagull</a>
+                    </div>
+                  </div>
+
+                  <!-- Item 5 -->
+                  <div class="carousel-item ">
+                    <div class="d-flex justify-content-center mb-3" style=" border-radius: 30px;">
+                      <img src="{% static 'images/buddy-pictures/whale.png' %}" class="p-5 mb-3" style="width: 300px; height: 300px;"> 
+                    </div>
+                    <div class="carousel-caption " >
+                      <a id="registerButton" class="btn btn-lg" href="{% url 'registerWhale2' %}" role="button">Emma the Whale</a>
+                    </div>
+                  </div>
+
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+

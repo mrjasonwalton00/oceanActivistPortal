@@ -18,8 +18,13 @@ class Buddies(models.Model):
     # Many-to-One relationship with User model
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    class Meta:
+        # Add unique constraint to user and name fields
+        unique_together = ('user', 'name')
+
     def __str__(self):
         return self.name
+
     
 # --------------------------------------------------------------------------------------
 

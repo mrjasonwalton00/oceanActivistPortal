@@ -36,3 +36,10 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['firstName', 'lastName', 'age', 'bio', 'profile_picture']
+
+#Form used to register another buddy
+class registerAnotherBuddyForm(forms.ModelForm):
+    registration_code = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    class Meta:
+        model = User
+        fields = ['registration_code']

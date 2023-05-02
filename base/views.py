@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout  #used for User Auth
 from django.contrib.auth.decorators import login_required #this is so we can restrict pages if you are not a logged in user
 from django.contrib import messages #used to send a flash message
 from django.contrib.auth.forms import UserChangeForm 
-from .forms import CreateUserForm, registerAnotherBuddy, createPostForm, ProfileUpdateForm
+from .forms import CreateUserForm, registerAnotherBuddy, createPostForm, ProfileUpdateForm, registerAnotherBuddy
 from django.contrib import messages 
 from django.contrib.auth.models import Group 
 from .models import Profile, Buddies, Posts
@@ -213,6 +213,8 @@ def registerSeagull(request):
 @csrf_exempt
 def portalPage(request):
     posts = Posts.objects.all().order_by('-date')
+    user = request.user
+    buddies = Buddies.objects.filter(user=user)
     if request.method == 'POST':
         # Check if the "delete_post" parameter is present in the POST request
         if 'delete_post' in request.POST:
@@ -238,7 +240,8 @@ def portalPage(request):
         form = createPostForm()
     context = {
         'form': form,
-        'posts': posts
+        'posts': posts,
+        'buddies': buddies,
     }
     return render(request, 'base/portalPages/portalPage.html', context)
 
@@ -298,17 +301,141 @@ def profilePage(request):
     return render(request, 'base/portalPages/profilePage.html', context)
 
 
+@login_required
+@csrf_exempt
+def regAnotherBuddy(request):
+    return render(request, 'base/registerAnotherBuddy/regAnotherBuddy.html' )
 
 
-
-
-
+#Views to Register Another Buddy
 
 
 @login_required
 @csrf_exempt
-def regAnotherBuddy(request):
-    return render(request, 'base/portalPages/regAnotherBuddy.html' )
+def registerDolphin2(request):
+    form = registerAnotherBuddy()
+    if request.method == 'POST':
+        form = registerAnotherBuddy(request.POST)
+        if form.is_valid():
+            registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+            if registration_code != 'dolphin': # check if the registration code is correct
+                messages.error(request, 'Invalid registration code.') # send an error message
+                return redirect('registerDolphin2') # redirect back to the same page
+            else:
+                # Check if user already has a 'dolphin' buddy
+                if Buddies.objects.filter(user=request.user, name='dolphin').exists():
+                    messages.error(request, 'You have already registered a dolphin buddy.')
+                    return redirect('registerDolphin2')
+                else:
+                    buddy = Buddies(name='dolphin', picture='static/images/buddy-pictures/dolphin.png', user=request.user) # set the user field with the current user
+                    buddy.save() # save the new Buddies instance
+
+                    messages.success(request, 'Another buddy was registered.')
+                    return redirect('portalPage')
+    context = {'form': form}
+    return render(request, 'base/registerAnotherBuddy/registerDolphin2.html', context)
+
+
+@login_required
+@csrf_exempt
+def registerTurtle2(request):
+    form = registerAnotherBuddy()
+    if request.method == 'POST':
+        form = registerAnotherBuddy(request.POST)
+        if form.is_valid():
+            registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+            if registration_code != 'turtle': # check if the registration code is correct
+                messages.error(request, 'Invalid registration code.') # send an error message
+                return redirect('registerTurtle2') # redirect back to the same page
+            else:
+                # Check if user already has a 'dolphin' buddy
+                if Buddies.objects.filter(user=request.user, name='turtle').exists():
+                    messages.error(request, 'You have already registered a turtle buddy.')
+                    return redirect('registerTurtle2')
+                else:
+                    buddy = Buddies(name='turtle', picture='static/images/buddy-pictures/turtle.png', user=request.user) # set the user field with the current user
+                    buddy.save() # save the new Buddies instance
+
+                    messages.success(request, 'Another buddy was registered.')
+                    return redirect('portalPage')
+    context = {'form': form}
+    return render(request, 'base/registerAnotherBuddy/registerTurtle2.html', context)
+
+@login_required
+@csrf_exempt
+def registerSeal2(request):
+    form = registerAnotherBuddy()
+    if request.method == 'POST':
+        form = registerAnotherBuddy(request.POST)
+        if form.is_valid():
+            registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+            if registration_code != 'seal': # check if the registration code is correct
+                messages.error(request, 'Invalid registration code.') # send an error message
+                return redirect('registerSealn2') # redirect back to the same page
+            else:
+                # Check if user already has a 'seal' buddy
+                if Buddies.objects.filter(user=request.user, name='seal').exists():
+                    messages.error(request, 'You have already registered a seal buddy.')
+                    return redirect('registerSeal2')
+                else:
+                    buddy = Buddies(name='seal', picture='static/images/buddy-pictures/seal.png', user=request.user) # set the user field with the current user
+                    buddy.save() # save the new Buddies instance
+
+                    messages.success(request, 'Another buddy was registered.')
+                    return redirect('portalPage')
+    context = {'form': form}
+    return render(request, 'base/registerAnotherBuddy/registerSeal2.html', context)
+
+
+@login_required
+@csrf_exempt
+def registerSeagull2(request):
+    form = registerAnotherBuddy()
+    if request.method == 'POST':
+        form = registerAnotherBuddy(request.POST)
+        if form.is_valid():
+            registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+            if registration_code != 'seagull': # check if the registration code is correct
+                messages.error(request, 'Invalid registration code.') # send an error message
+                return redirect('registerSeagull2') # redirect back to the same page
+            else:
+                # Check if user already has a 'seagull' buddy
+                if Buddies.objects.filter(user=request.user, name='seagull').exists():
+                    messages.error(request, 'You have already registered a seagull buddy.')
+                    return redirect('registerSeagull2')
+                else:
+                    buddy = Buddies(name='seagull', picture='static/images/buddy-pictures/seagull.png', user=request.user) # set the user field with the current user
+                    buddy.save() # save the new Buddies instance
+
+                    messages.success(request, 'Another buddy was registered.')
+                    return redirect('portalPage')
+    context = {'form': form}
+    return render(request, 'base/registerAnotherBuddy/registerSeagull2.html', context)
+
+@login_required
+@csrf_exempt
+def registerWhale2(request):
+    form = registerAnotherBuddy()
+    if request.method == 'POST':
+        form = registerAnotherBuddy(request.POST)
+        if form.is_valid():
+            registration_code = request.POST.get('registration_code') # get the value of the registration code from the form
+            if registration_code != 'whale': # check if the registration code is correct
+                messages.error(request, 'Invalid registration code.') # send an error message
+                return redirect('registerWhale2') # redirect back to the same page
+            else:
+                # Check if user already has a 'whale' buddy
+                if Buddies.objects.filter(user=request.user, name='whale').exists():
+                    messages.error(request, 'You have already registered a whale buddy.')
+                    return redirect('registerWhale2')
+                else:
+                    buddy = Buddies(name='whale', picture='static/images/buddy-pictures/whale.png', user=request.user) # set the user field with the current user
+                    buddy.save() # save the new Buddies instance
+
+                    messages.success(request, 'Another buddy was registered.')
+                    return redirect('portalPage')
+    context = {'form': form}
+    return render(request, 'base/registerAnotherBuddy/registerWhale2.html', context)
 
     
 

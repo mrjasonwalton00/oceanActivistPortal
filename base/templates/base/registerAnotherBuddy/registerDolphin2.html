@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p> </p>
+        </div>
+    </div>
+</div>
+
+<!-- For messages -->
+<div class="container bg-info" style="margin-top: 200px;">
+  <div class="row">
+    <div class="col bg-success">
+      <p> test </p>
+      {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'success' %}
+          <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            {{ message }}
+          </div>
+        {% endif %}
+        {% if message.tags == 'error' %}
+          <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            {{ message }}
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 100px;">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <a id = "characterCard"  href="#"> <img class = "shadow-lg" src="{% static 'images/buddy-pictures/dolphin.png' %}" alt="dolphin" style="width: 300px; height: 300px; border-radius: 30px;"> </a>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.registration_code.label_tag }}
+                {{ form.registration_code }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+

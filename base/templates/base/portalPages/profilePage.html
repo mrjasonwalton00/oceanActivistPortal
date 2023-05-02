@@ -100,11 +100,11 @@
             {% endfor %}
         {% endwith %}
         <div class="col-12 col-sm-2">
-            <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC; display: flex; justify-content: center; align-items: center;">
-                <a href="{% url 'regAnotherBuddy' %}">
+            <a id = "addButton" href="{% url 'regAnotherBuddy' %}">
+                <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC; display: flex; justify-content: center; align-items: center;">
                     <i class="fa-solid fa-plus" style="font-size: 30px; color: #0F75BC;"></i>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
@@ -137,7 +137,7 @@
 
         </div>
 
-        <div class="col-12 col-sm-8 rounded shadow-lg" style="background-image: url('/static/images/background-images/background2.jpeg');
+        <div class="col-12 col-sm-8 rounded shadow-lg" style="background-image: url('/static/images/background-images/background3.jpeg');
         background-size: cover;
         background-repeat: no-repeat;">
             {% for post in user_posts %}

@@ -152,7 +152,7 @@
       <!-- Left Side -->
       <div id = "buddyPicture" class="col-12 col-sm-6 d-flex justify-content-center" style="background-color: #ffffff2b; border-radius: 30px;">
         <div style=" width: 500px; height: 200px;">
-            <p class="text-center rounded shadow-lg mt-4 " style="font-size: 20px; color: white; background-color: #0f74bcdf;" > Shelly the Sea Turtle </p>
+            <h4 class="text-center  mt-4 " style=" color: #0f74bcdf; font-weight: 900;" > Shelly the Sea Turtle </h4>
             <a class="d-flex justify-content-center" id = "characterCard"  href="{% url 'registerTurtle' %}"> <img  src="{% static 'images/buddy-pictures/turtle.png' %}" alt="turtle" style="width: 300px; height: 300px; border-radius: 30px;"> </a>
           </div>
       </div>
@@ -167,25 +167,25 @@
             {% csrf_token %}
             <!-- Username -->
             <div class="form-group p-2">
-                <label for="{{form.username.id_for_label}}" style="color: white; font-weight: 400;">Create a username:</label>
+                <label for="{{form.username.id_for_label}}" style="color: white; font-weight: 500;">Create a username:</label>
                 <input id = "bubble" type="text" name="{{form.username.name}}" style="height: 40px;" class="form-control" id="{{form.username.id_for_label}}" placeholder="Username">
             </div>
 
             <!-- Password -->
             <div class="form-groupc p-2">
-                <label for="{{form.password1.id_for_label}}" style="color: white; font-weight: 400;"> Create a password:</label>
+                <label for="{{form.password1.id_for_label}}" style="color: white; font-weight: 500;"> Create a password:</label>
                 <input id = "bubble" type="password" name="{{form.password1.name}}" style="height: 40px;" class="form-control" id="{{form.password1.id_for_label}}" placeholder="Password">
             </div>
 
             <!-- Confirm Password -->
             <div class="form-group p-2">
-                <label for="{{form.password2.id_for_label}}" style="color: white; font-weight: 400;">Confirm Password:</label>
+                <label for="{{form.password2.id_for_label}}" style="color: white; font-weight: 500;">Confirm Password:</label>
                 <input id = "bubble" type="password" name="{{form.password2.name}}" style="height: 40px;" class="form-control" id="{{form.password2.id_for_label}}" placeholder="Confirm Password">
             </div> 
 
             <!-- Registration code -->
             <div class="form-group p-2">
-                <label for="registration_code" style="color: white; font-weight: 400;">Registration Code:</label>
+                <label for="registration_code" style="color: white; font-weight: 500;">Registration Code:</label>
                 <input id = "bubble" type="text" name="registration_code" style="height: 40px;" class="form-control" id="registration_code" placeholder="Enter code">
             </div>   
 

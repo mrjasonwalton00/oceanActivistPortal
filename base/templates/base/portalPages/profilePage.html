@@ -27,13 +27,18 @@
             {% empty %}
                 No groups
             {% endfor %} </span>
+            
         </div>
+
+      
 
         <div class="col-12 col-sm-4 d-flex justify-content-end align-items-end py-2">
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #0F75BC;">
                 Edit Profile
             </button>
         </div>
+
+        
     </div>
 </div>
 
@@ -99,6 +104,7 @@
                 </div>
             {% endfor %}
         {% endwith %}
+        {% if buddies|length < 5 %}
         <div class="col-12 col-sm-2">
             <a id = "addButton" href="{% url 'regAnotherBuddy' %}">
                 <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC; display: flex; justify-content: center; align-items: center;">
@@ -106,6 +112,7 @@
                 </div>
             </a>
         </div>
+        {% endif %}
     </div>
 </div>
 

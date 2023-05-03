@@ -215,6 +215,7 @@ def portalPage(request):
     posts = Posts.objects.all().order_by('-date')
     user = request.user
     buddies = Buddies.objects.filter(user=user)
+    videos = Video.objects.all()
     if request.method == 'POST':
         # Check if the "delete_post" parameter is present in the POST request
         if 'delete_post' in request.POST:
@@ -242,6 +243,7 @@ def portalPage(request):
         'form': form,
         'posts': posts,
         'buddies': buddies,
+        'videos' : videos,
     }
     return render(request, 'base/portalPages/portalPage.html', context)
 

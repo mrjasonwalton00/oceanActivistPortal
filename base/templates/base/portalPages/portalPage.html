@@ -1,5 +1,6 @@
 {% extends 'main.html' %}
 {% load static %}
+{% load embed_video_tags %}
 
 {% block content %}
 
@@ -11,6 +12,10 @@
         background-size: cover;
         background-repeat: no-repeat;
         
+    }
+
+    video {
+        border-radius: 15px !important;
     }
 
     /* Used for smaller screens */
@@ -280,10 +285,9 @@
 
         
             <div class="d-flex justify-content-center">
-                <div class="card shadow-lg border border-primary" style="width: 15rem; margin-top: 25px; border-radius: 30px;">
-                    <img src="{% static 'images/site-pictures/game1thumbnail.png' %}" style=" border-top-left-radius: 30px; border-top-right-radius: 30px;" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <a class="d-flex justify-content-center btn" style="background-color: #0F75BC; color: white; " href="{% url 'gamePage' %}">Play Now</a>
+                <div class="col d-flex justify-content-center m-2">
+                    <div class="d-flex justify-content-center">
+                        {% video videos.0.url '200x150' %}
                     </div>
                 </div>
             </div>
@@ -291,10 +295,9 @@
             <hr>
 
             <div class="d-flex justify-content-center">
-                <div class="card shadow-lg border border-primary" style="width: 15rem; margin-top: 25px; border-radius: 30px;">
-                    <img src="{% static 'images/site-pictures/game1thumbnail.png' %}" style=" border-top-left-radius: 30px; border-top-right-radius: 30px;" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <a class="d-flex justify-content-center btn" style="background-color: #0F75BC; color: white; " href="{% url 'gamePage' %}">Play Now</a>
+                <div class="col d-flex justify-content-center m-2">
+                    <div class="d-flex justify-content-center">
+                        {% video videos.1.url '200x150' %}
                     </div>
                 </div>
             </div>
@@ -302,10 +305,9 @@
             <hr>
 
             <div class="d-flex justify-content-center">
-                <div class="card shadow-lg border border-primary" style="width: 15rem; margin-top: 25px; border-radius: 30px;">
-                    <img src="{% static 'images/site-pictures/game1thumbnail.png' %}" style=" border-top-left-radius: 30px; border-top-right-radius: 30px;" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <a class="d-flex justify-content-center btn" style="background-color: #0F75BC; color: white; " href="{% url 'gamePage' %}">Play Now</a>
+                <div class="col d-flex justify-content-center m-2">
+                    <div class="d-flex justify-content-center">
+                        {% video videos.2.url '200x150' %}
                     </div>
                 </div>
             </div>

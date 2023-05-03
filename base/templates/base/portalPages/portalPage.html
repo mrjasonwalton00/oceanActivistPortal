@@ -99,62 +99,111 @@
             
 
             <div id="Maincontainer" class="container rounded shadow-lg px-5 py-4  " style=" width: 800px;">
-                <div class="row">
-                    <div id="banner" class="col d-flex justify-content-center">
-                        <div  style="width: 700px; border-radius: 30px; background-image: url('/static/images/background-images/background2.jpeg');
-                        background-size: cover;
-                        background-repeat: no-repeat;">
-                            <!-- Banner Picture  -->
-                            <div class="d-flex justify-content-center">
-                                <img src="{% static 'images/logos/logo2.png' %}" style="width: 230px; height: 200px;">
-                            </div>
-                        </div>
-                    </div> 
-                </div> 
-                <div class="row d-flex justify-content-center py-2 " >
-                    {% with sliced_buddies=buddies|slice:":5" %}
-                        {% for buddy in sliced_buddies %}
-                            <div class="col-12 col-sm-2 ">
-                                {% if buddy.picture %}
-                                    <a href="#">
-                                        <img id="profileButton" src="{{ buddy.picture.url }}" style="border-radius: 50px; width: 80px; height: 80px; margin-top: 5px; border-style: solid; border-color: #0F75BC;">
-                                    </a>
-                                {% else %}
-                                    <div style="border-radius: 50%; width: 80px; height: 80px; margin-top: 5px; border-style: solid; border-color: #0F75BC; display: flex; justify-content: center; align-items: center;">
-                                        <a href="{% url 'regAnotherBuddy' %}">
-                                            <i class="fa-solid fa-plus" style="font-size: 30px; color: #0F75BC;"></i>
-                                        </a>
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    {% endwith %}
-                    {% if buddies|length < 5 %}
-                    <div class="col-12 col-sm-2">
-                        <a href="{% url 'regAnotherBuddy' %}" id = "addButton">
-                            <div style="border-radius: 50%; width: 80px; height: 80px; margin-top: 5px; border-style: solid; border-color: #0f74bcbb; display: flex; justify-content: center; align-items: center;">
-                                <i class="fa-solid fa-plus" style="font-size: 30px; color: #0f74bcc0; font-weight: 300;"></i>
+                
+                <div class="container rounded shadow-lg" style="width: 650px;">
+                    <!-- Header -->
+                
+                
+                <!-- Buddies -->
+                <div class="row d-flex justify-content-center py-3 " style="border-radius: 15px; background-color: rgba(255, 255, 255, 0.829);">
+                    <p style="color: #0F75BC; font-weight: 700;" class="text-center">  Welcome {{ user.username }}! </p>
+                    <hr>
+                    {% if buddies|length >= 1 and buddies.0.picture %}
+                    <div class="col-12 mx-2  col-sm-2 shadow-sm d-flex justify-content-center bg-white px-2" style="border-radius: 15px; height: 200px;">
+                        <a href="#">
+                            <img id="profileButton-0" src="{{ buddies.0.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 50px; border-style:solid; border-color: #0F75BC;">
+                        </a>
+                    </div>
+                    
+                    {% endif %}
+
+                    {% if buddies|length >= 2 and buddies.1.picture %}
+                    <div class="col-12 mx-2 col-sm-2 shadow-sm d-flex justify-content-center bg-white " style="border-radius: 15px; height: 200px;">
+                        <a href="#">
+                            <img id="profileButton-1" src="{{ buddies.1.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 50px; border-style: solid; border-color: #0F75BC;">
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="col-12 mx-2 col-sm-2 shadow-sm d-flex justify-content-center bg-white" style="border-radius: 15px; height: 200px;">
+                        <a href="{% url 'regAnotherBuddy' %}">
+                            <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 50px; display: flex; justify-content: center; align-items: center;">
+                                <i class="fa-solid fa-circle-plus" style="font-size: 30px; color: #0f74bc;"></i>
+                                
                             </div>
                         </a>
                     </div>
                     {% endif %}
+
+                    {% if buddies|length >= 3 and buddies.2.picture %}
+                    <div class="col-12 mx-2 col-sm-2 shadow-sm d-flex justify-content-center bg-white" style="border-radius: 15px; height: 200px;">
+                        <a href="#">
+                            <img id="profileButton-2" src="{{ buddies.2.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 50px; border-style: solid; border-color: #0F75BC;">
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="col-12 mx-2 col-sm-2 shadow-sm d-flex justify-content-center bg-white" style="border-radius: 15px; height: 200px;">
+                        <a href="{% url 'regAnotherBuddy' %}">
+                            <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 50px; display: flex; justify-content: center; align-items: center;">
+                                <i class="fa-solid fa-circle-plus" style="font-size: 30px; color: #0F75BC;"></i>
+                            </div>
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    {% if buddies|length >= 4 and buddies.3.picture %}
+                    <div class="col-12 mx-2 col-sm-2 shadow-sm d-flex justify-content-center bg-white" style="border-radius: 15px; height: 200px;">
+                        <a href="#">
+                            <img id="profileButton-3" src="{{ buddies.3.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 50px; border-style: solid; border-color: #0F75BC;">
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="col-12 mx-2 col-sm-2 shadow-sm d-flex justify-content-center bg-white" style="border-radius: 15px; height: 200px;">
+                        <a href="{% url 'regAnotherBuddy' %}">
+                            <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 50px; display: flex; justify-content: center; align-items: center;">
+                                <i class="fa-solid fa-circle-plus" style="font-size: 30px; color: #0f74bc;"></i>
+                                
+                            </div>
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    {% if buddies|length >= 5 and buddies.4.picture %}
+                    <div class="col-12 mx-2 col-sm-2 shadow-sm d-flex justify-content-center bg-white" style="border-radius: 15px; height: 200px;">
+                        <a href="#">
+                            <img id="profileButton-4" src="{{ buddies.4.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 50px; border-style: solid; border-color: #0F75BC;">
+                        </a>
+                    </div>
+                    
+                    
+                    {% endif %}
+
+                    {% if buddies|length < 5 %}
+                    <div class="col-12 mx-2 col-sm-2 shadow-sm d-flex justify-content-center bg-white" style="border-radius: 15px; height: 200px;">
+                        <a id="addButton" href="{% url 'regAnotherBuddy' %}">
+                            <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 50px; display: flex; justify-content: center; align-items: center;">
+                                <i class="fa-solid fa-circle-plus" style="font-size: 30px; color: #0F75BC;"></i>
+                            </div>
+                        </a>
+                    </div>
+                    {% else %}
+                    
+                    {% endif %}
+
+
                 </div>
+            </div>
                 
-
                 
-
-
+                
+    
                 <hr>
 
-                
-
-              
                 <!-- Make a Post -->
-                <div class="row  mt-3 ">
+                <div class="row py-3 ">
                     <div class="col-12 d-flex justify-content-center ">
                         <!-- Make post card  -->
-                        <div class="card border border-primary shadow-lg " style="border-radius: 15px; width: 600px; ">
-                            <div class="card-body">
+                        <div class="card border border-secondary shadow-lg " style="border-radius: 15px; width: 600px; ">
+                            <div class="card-body py-3">
                                 <form method="POST" action="" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="form-group p-1" style="display: flex; align-items: center;">
@@ -265,6 +314,12 @@
            
 
         </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <p> test </p>
     </div>
 </div>
 

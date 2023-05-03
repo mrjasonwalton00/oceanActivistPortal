@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserChangeForm
 from .forms import CreateUserForm, registerAnotherBuddy, createPostForm, ProfileUpdateForm, registerAnotherBuddy
 from django.contrib import messages 
 from django.contrib.auth.models import Group 
-from .models import Profile, Buddies, Posts
+from .models import Profile, Buddies, Posts, Video
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.views import generic
@@ -260,7 +260,8 @@ def delete_post(request, pk):
 @login_required
 @csrf_exempt
 def videoPage(request):
-    return render(request, 'base/portalPages/videoPage.html' )
+    videos = Video.objects.all()
+    return render(request, 'base/portalPages/videoPage.html', context={'videos':videos} )
 
 @login_required
 @csrf_exempt
@@ -437,6 +438,11 @@ def registerWhale2(request):
     context = {'form': form}
     return render(request, 'base/registerAnotherBuddy/registerWhale2.html', context)
 
+
+@login_required
+@csrf_exempt
+def test(request):
+    return render(request, 'base/portalPages/test.html' )
     
 
 

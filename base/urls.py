@@ -26,6 +26,8 @@ urlpatterns = [
     path('videoPage/', views.videoPage, name='videoPage'),
     path('gamePage/', views.gamePage, name='gamePage'),
     path('regAnotherBuddy/', views.regAnotherBuddy, name='regAnotherBuddy'),
+    path('test/', views.test, name='test'),
+
 
     #urls to register Another Buddy
     path('registerWhale2/', views.registerWhale2, name='registerWhale2'),

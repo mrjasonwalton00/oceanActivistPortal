@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<h1> test </h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 200px;">
+    <div class="row">
+        {% if buddies|length >= 1 and buddies.0.picture %}
+<div class="col-12 col-sm-2">
+    <a href="#">
+        <img id="profileButton-0" src="{{ buddies.0.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC;">
+    </a>
+</div>
+{% endif %}
+
+{% if buddies|length >= 2 and buddies.1.picture %}
+<div class="col-12 col-sm-2">
+    <a href="#">
+        <img id="profileButton-1" src="{{ buddies.1.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC;">
+    </a>
+</div>
+{% endif %}
+
+{% if buddies|length >= 3 and buddies.2.picture %}
+<div class="col-12 col-sm-2">
+    <a href="#">
+        <img id="profileButton-2" src="{{ buddies.2.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC;">
+    </a>
+</div>
+{% endif %}
+
+{% if buddies|length >= 4 and buddies.3.picture %}
+<div class="col-12 col-sm-2">
+    <a href="#">
+        <img id="profileButton-3" src="{{ buddies.3.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC;">
+    </a>
+</div>
+{% endif %}
+
+{% if buddies|length >= 5 and buddies.4.picture %}
+<div class="col-12 col-sm-2">
+    <a href="#">
+        <img id="profileButton-4" src="{{ buddies.4.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC;">
+    </a>
+</div>
+{% endif %}
+
+{% if buddies|length < 5 %}
+<div class="col-12 col-sm-2">
+    <a id="addButton" href="{% url 'regAnotherBuddy' %}">
+        <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC; display: flex; justify-content: center; align-items: center;">
+            <i class="fa-solid fa-plus" style="font-size: 30px; color: #0F75BC;"></i>
+        </div>
+    </a>
+</div>
+{% endif %}
+
+        
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+

@@ -14,33 +14,66 @@
     </div>
 </div>
 
-<!-- Displays name  -->
-<div class="container rounded shadow-lg" style="margin-top: 150px;">
+<div class="container rounded shadow-lg py-2" style="margin-top: 150px;  background-color: #0f74bc;">
+    <!-- Top -->
     <div class="row">
-        <div class="col-12 col-sm-8  d-flex justify-content-start align-items-center py-1 px-5">
-            <a href="{% url 'profilePage' %}">
-                <img id="profileButton" src="{{  request.user.profile.profile_picture.url }}" style="border-radius: 75px; width: 150px; height: 150px; margin-top: 5px; border-style: solid; display: inline-block;">
-            </a>
-            <h1 style="display: inline-block; margin-left: 20px; font-weight: bold; color: #0F75BC;">{{ user.username }}</h1>
-            <span class="badge rounded-pill text-bg-warning"> {% for group in user.groups.all %}
-                {{ group.name }}
-            {% empty %}
-                No groups
-            {% endfor %} </span>
-            
+        <div class="col-2">
+            <!-- profile pciture -->
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <img id="profileButton" src="{{  request.user.profile.profile_picture.url }}" style="border-radius: 75px; width: 150px; height: 150px; margin-top: 5px; border-style: solid; ">
+                </div>
+            </div>
+            <!-- badge -->
+            <div class="row mt-1">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="badge rounded-pill text-bg-warning"> {% for group in user.groups.all %}
+                        {{ group.name }}
+                    {% empty %}
+                        No groups
+                    {% endfor %} </div>
+                </div>
+            </div>
         </div>
+        <div class="col-10 my-3">
+            <!-- Name -->
+            <div class="row">
+                <div class="col-12 mx-1">
+                    <h1 class="text-white" style="font-size: 50px; font-weight: 700;"> {{ user.profile.firstName }}  {{ user.profile.lastName }} </h1>
+                </div>
+            </div>
+            <!-- Username -->
+            <div class="row">
+                <div class="col-12 mx-1">
+                    <h5 class="text-white"> @{{ user.username }} </h5>
+                </div>
+            </div>
+            <!-- Bio -->
+            <div class="row mt-2">
+                <div class="col-4">
+                  
+                        <div class="border border-dark" style="border-radius: 20px; background-color: white; height: fit-content;">
+                            <p class="mx-2 py-2"> {{ user.profile.bio }} </p>
+                        </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
-      
 
-        <div class="col-12 col-sm-4 d-flex justify-content-end align-items-end py-2">
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #0F75BC;">
+    <!-- Bottom -->
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+            <button type="button" class="btn border border-white" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #ffffff;">
                 Edit Profile
             </button>
         </div>
-
-        
     </div>
 </div>
+
+
 
 <!-- Modal  -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,7 +118,7 @@
 </div>
 
 <!-- Buddies -->
-<div class="container  px-5 py-3">
+<div class="container shadow-lg rounded  px-5 py-3">
     <div class="row d-flex justify-content-center">
         {% with sliced_buddies=buddies|slice:":5" %}
             {% for buddy in sliced_buddies %}
@@ -95,9 +128,9 @@
                             <img id="profileButton" src="{{ buddy.picture.url }}" style="border-radius: 50px; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC;">
                         </a>
                     {% else %}
-                        <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC; display: flex; justify-content: center; align-items: center;">
-                            <a href="{% url 'regAnotherBuddy' %}">
-                                <i class="fa-solid fa-plus" style="font-size: 30px; color: #0F75BC;"></i>
+                        <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px;  display: flex; justify-content: center; align-items: center;">
+                            <a href="{% url 'regAnotherBuddy' %}" style="text-decoration: none;">
+                                <i class="fa-solid fa-circle-plus" style="font-size: 30px; color: #0F75BC;"></i>
                             </a>
                         </div>
                     {% endif %}
@@ -106,9 +139,9 @@
         {% endwith %}
         {% if buddies|length < 5 %}
         <div class="col-12 col-sm-2">
-            <a id = "addButton" href="{% url 'regAnotherBuddy' %}">
-                <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px; border-style: solid; border-color: #0F75BC; display: flex; justify-content: center; align-items: center;">
-                    <i class="fa-solid fa-plus" style="font-size: 30px; color: #0F75BC;"></i>
+            <a  href="{% url 'regAnotherBuddy' %}" style="text-decoration: none;">
+                <div style="border-radius: 50%; width: 100px; height: 100px; margin-top: 5px;  display: flex; justify-content: center; align-items: center;">
+                    <i class="fa-solid fa-circle-plus" style="font-size: 30px; color: #0F75BC;"></i>
                 </div>
             </a>
         </div>
@@ -116,37 +149,11 @@
     </div>
 </div>
 
-<div class="container mt-5" >
-    <div class="row">
+<div class="container mt-2" style="margin-bottom: 1000px;" >
+    <div class="row ">
 
-        <div class="col-12 col-sm-3  p-2" style="height: 400px;">
 
-            <div class="vstack gap-4 rounded shadow-lg py-5">
-                <div class="p-2 shadow-lg rounded">{{ user.profile.firstName }}  {{ user.profile.lastName }}</div>
-                <div class="p-2 shadow-lg rounded"> Age: {{ user.profile.age }} </div>
-                <div class="p-2 shadow-lg rounded"> Bio: {{ user.profile.bio }}</div>
-                <div class="p-2 shadow-lg rounded"> Membership:
-                    {% for group in user.groups.all %}
-                        {{ group.name }}
-                    {% empty %}
-                        No groups
-                    {% endfor %}
-                </div>
-            </div>
-
-            
-            
-        </div>
-
-        
-
-        <div class="col-12 col-sm-1">
-
-        </div>
-
-        <div class="col-12 col-sm-8 rounded shadow-lg" style="background-image: url('/static/images/background-images/background3.jpeg');
-        background-size: cover;
-        background-repeat: no-repeat;">
+        <div class="col-12 col-sm-8 ">
             {% for post in user_posts %}
             
             <!-- Post Card -->

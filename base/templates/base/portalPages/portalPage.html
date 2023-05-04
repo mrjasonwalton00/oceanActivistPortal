@@ -231,8 +231,10 @@
                                 <div class="row">
                                     <!-- Left Side -->
                                     <div class="col-6">
-                                        <img src="{{ post.user.profile.profile_picture.url }}" style="border-radius: 30px; width: 40px; height: 40px; margin-top: 5px; border-style: solid; text-decoration: none; border-color: #0F75BC;">
-                                        <p style="font-weight: 700; display: inline; color: #0F75BC;">{{ post.user }}</p>
+                                        <a href="{% url 'otherUser' post.user.username %}">
+                                            <img src="{{ post.user.profile.profile_picture.url }}" style="border-radius: 30px; width: 40px; height: 40px; margin-top: 5px; border-style: solid; text-decoration: none; border-color: #0F75BC;">
+                                            <p style="font-weight: 700; display: inline; color: #0F75BC;">{{ post.user }}</p>
+                                        </a>
                                     </div>
                                     <!-- Right Side -->
                                     <div class="col-6">

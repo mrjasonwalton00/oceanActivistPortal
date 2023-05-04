@@ -445,6 +445,12 @@ def registerWhale2(request):
 @csrf_exempt
 def test(request):
     return render(request, 'base/portalPages/test.html' )
+
+@login_required
+@csrf_exempt
+def otherUser(request, username):
+    user = get_object_or_404(User, username=username)
+    return render(request, 'base/portalPages/otherUser.html', {'user': user})
     
 
 
